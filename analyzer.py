@@ -58,14 +58,22 @@ class BERTDataset(Dataset):
 
 class SentimentAnalyzer():
     def __init__(self):
+        # TODO: test 종료 후 삭제하기
+        print("After __init__")
         self.emotion_to_int = {'기쁨': 0, '불안': 1, '당황': 2, '슬픔': 3, '분노': 4, '상처': 5}
         self.int_to_emotion = {0: '기쁨', 1: '불안', 2: '당황', 3: '슬픔', 4: '분노', 5: '상처'}
         bertmodel, vocab = get_pytorch_kobert_model()
+        # TODO: test 종료 후 삭제하기
+        print("After bertmodel, vocab")
         tokenizer = get_tokenizer()
         self.tok = nlp.data.BERTSPTokenizer(tokenizer, vocab, lower=False)
         self.device = torch.device("cpu")
         self.model = BERTClassifier(bertmodel, dr_rate=0.5).to(self.device)
+        # TODO: test 종료 후 삭제하기
+        print("After self.model")
         self.model.load_state_dict(torch.load('kobert_state_dict_30.pth', map_location=self.device))
+        # TODO: test 종료 후 삭제하기
+        print("After load_state_dict")
 
     def predict(self, predict_sentence, max_len=64, batch_size=64):
         test_X = []

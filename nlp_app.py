@@ -5,6 +5,8 @@ import analyzer
 
 def get_prediction(sentence):
     sentiment_analyzer = analyzer.SentimentAnalyzer()
+    # TODO: test 종료 후 삭제하기
+    print(sentence)
     return sentiment_analyzer.predict([sentence])[0]
 
 
@@ -38,11 +40,13 @@ def create_app(test_config=None):
             # TODO: test 종료 후 삭제하기
             print(sentence)
             sentiment_result = get_prediction(sentence)
+            # TODO: test 종료 후 삭제하기
+            print(sentiment_result)
             return jsonify({'sentence': sentence, 'sentiment_result': sentiment_result})
 
     return app
 
+app = create_app(test_config=None)
 
 if __name__ == '__main__':
-    app = create_app(test_config=None)
-    app.run('0.0.0.0', port=5000, debug=True)
+    app.run()
