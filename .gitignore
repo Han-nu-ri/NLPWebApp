@@ -1,2 +1,3 @@
 .idea/*
 /kobert_state_dict_30.pth
+/flask/kobert_state_dict_30.pth
